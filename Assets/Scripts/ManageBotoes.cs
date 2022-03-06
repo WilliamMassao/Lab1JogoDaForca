@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class ManageBotoes : MonoBehaviour
+public class ManageBotoes : MonoBehaviour // Essa classe é responsável por gerenciar os botões, realizando os redirecionamentos entre as cenas necessários.
 {
     // Start is called before the first frame update
     void Start()

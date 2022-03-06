@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour // Essa classe é responsável por gerenciar e adquirir todos os dados para o bom funcionamento do Jogo, além de redirecionar as cenas quando necessário.
 {
     public GameObject letra;                // Objeto de Texto que india a letra do jogo
     public GameObject centro;               // Objeto de Texto que indica o centro da tela
@@ -13,12 +13,12 @@ public class GameManager : MonoBehaviour
     private string palavraOculta = "";      // Palavra a ser descoberta 
     // private string[] palavrasOcultas = new string[] { "carro", "jogo", "Futebol" }; // Array de Palavras a serem descobertas - Lab2
     private int tamanhoPalavraOculta;       // Tamanho da palavra a ser descoberta
-    char[] letrasOcultas;                  // Letras da palavra a ser descoberta
-    bool[] letrasDescobertas;              // Indicador de quais letras já foram descoberas
+    char[] letrasOcultas;                   // Letras da palavra a ser descoberta
+    bool[] letrasDescobertas;               // Indicador de quais letras já foram descoberas
 
-    private int numTentativas;              // Arnazena as tentativas válidas da rodada
+    private int numTentativas;              // Armazena as tentativas válidas da rodada
     private int MaxNumTentativas;           // Número máximo de tetativas para a Forca ou Salvação
-    int score = 0;
+    int score = 0;                          // Configura o Score como 0
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < numLetras; i++)
         {
             Vector3 novaPosicao;
-            novaPosicao = new Vector3(centro.transform.position.x + ((i - numLetras / 2.0f) * 80), centro.transform.position.y, centro.transform.position.z);
+            novaPosicao = new Vector3(centro.transform.position.x + ((i - numLetras / 2.0f) * 80), centro.transform.position.y, centro.transform.position.z); // Define a posicao das letras baseado no objeto de referencia central
             GameObject l = (GameObject)Instantiate(letra, novaPosicao, Quaternion.identity);
             l.name = "letra" + (i + 1);   // Nomeia na hierarquia a GameObject com letra-(iésima+1), i = 1...numLetras
             l.transform.SetParent(GameObject.Find("Canvas").transform);  // Posiciona-se como filho do GameObject Canvas 
@@ -101,10 +101,8 @@ public class GameManager : MonoBehaviour
                         verificaSePalavraDescoberta();
                     }
                 }
-                Debug.Log("LastScore: " + lastScore);
-                Debug.Log("CurrentScore: " + PlayerPrefs.GetInt("score"));
 
-                if (lastScore == PlayerPrefs.GetInt("score"))
+                if (lastScore == PlayerPrefs.GetInt("score")) // Valida se a letra digitada foi incorreta
                 {
                     GameObject.Find("mensagemErro").GetComponent<Text>().text = "Errou! Tente novamente..."; // Exibe uma mensagem de erro ao digitar uma letra incorreta
 
